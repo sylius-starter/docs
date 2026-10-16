@@ -1,0 +1,67 @@
+/* Starlight theme, matching the landing palette (src/styles/global.css). */
+
+:root {
+    --sl-font: 'Inter', system-ui, sans-serif;
+
+    /* Dark theme (Starlight default): cyan accents. */
+    --sl-color-accent-low: #0a3a3e;
+    --sl-color-accent: #0fc6cd;
+    --sl-color-accent-high: #c9f6f7;
+}
+
+/* Starlight styles live in a cascade layer: an unscoped :root rule here would also win over its light theme. */
+:root[data-theme='dark'] {
+    --sl-color-black: #061517;
+    --sl-color-gray-6: #0a2629;
+    --sl-color-gray-5: #183a3e;
+}
+
+:root[data-theme='light'] {
+    --sl-color-accent-low: #d6eeee;
+    --sl-color-accent: #067c86;
+    --sl-color-accent-high: #05454b;
+    --sl-color-white: #0b1416;
+    --sl-color-gray-7: #f4f8fb;
+    --sl-color-gray-6: #e7f9f9;
+}
+
+.site-title {
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.site-title::after {
+    content: '';
+    width: 0.4em;
+    height: 0.4em;
+    margin-inline-start: 0.1em;
+    align-self: flex-end;
+    margin-block-end: 0.35em;
+    border-radius: 50%;
+    background: var(--sl-color-accent);
+}
+
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3 {
+    letter-spacing: -0.03em;
+}
+
+/* Tables of full-page screenshots (theme pages, theme gallery). */
+.sl-markdown-content td:has(img) {
+    vertical-align: top;
+}
+
+.sl-markdown-content td img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Gallery thumbnails (sized in HTML for GitHub): show the top of the homepage only. */
+.sl-markdown-content td img[width] {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+}

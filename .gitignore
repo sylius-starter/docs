@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+*.log
+# Copied from the monorepo docs/ folder at build.
+src/content/docs/
+public/images/
+.monorepo/
