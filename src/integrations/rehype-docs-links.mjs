@@ -16,12 +16,21 @@ export default function rehypeDocsLinks({ contentDir, base = '/' }) {
 
         const pageDir = relative(contentDir, dirname(file.path)).split('\\').join('/');
 
-        visit(tree, (node) => {
+        visit(tree, (node, index, parent) => {
             if (node.type === 'element' && node.tagName === 'a' && typeof node.properties.href === 'string') {
                 node.properties.href = rewritePage(node.properties.href, pageDir, prefix);
             }
             if (node.type === 'element' && node.tagName === 'img' && typeof node.properties.src === 'string') {
                 node.properties.src = rewriteImage(node.properties.src, pageDir, prefix);
+                // Clicking a Markdown image opens it full size, as on GitHub.
+                if (parent && parent.tagName !== 'a') {
+                    parent.children[index] = {
+                        type: 'element',
+                        tagName: 'a',
+                        properties: { href: node.properties.src, target: '_blank', className: ['image-link'] },
+                        children: [node],
+                    };
+                }
             }
             // HTML written in the Markdown (e.g. the theme gallery) is still a raw string at this point.
             if (node.type === 'raw') {
