@@ -57,11 +57,91 @@
     height: auto;
 }
 
-/* Gallery thumbnails (sized in HTML for GitHub): show the top of the homepage only. */
+.sl-markdown-content .image-link {
+    display: block;
+    cursor: zoom-in;
+}
+
+/*
+ * Theme gallery: a table per category on GitHub (thumbnails sized in HTML), a grid of cards here.
+ * Each row becomes a card: the top of the homepage, then the theme name and its description.
+ */
+.sl-markdown-content table:has(td img[width]) {
+    display: block;
+    overflow: visible;
+    border: 0;
+}
+
+.sl-markdown-content table:has(td img[width]) thead {
+    display: none;
+}
+
+.sl-markdown-content table:has(td img[width]) tbody {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    gap: 1rem;
+}
+
+.sl-markdown-content table:has(td img[width]) tr {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.75rem;
+    background: var(--sl-color-gray-7, var(--sl-color-gray-6));
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.sl-markdown-content table:has(td img[width]) tr:hover {
+    border-color: var(--sl-color-accent);
+    transform: translateY(-2px);
+}
+
+.sl-markdown-content table:has(td img[width]) td {
+    display: block;
+    width: auto;
+    margin: 0;
+    padding: 0 1rem;
+    border: 0;
+    background: none;
+}
+
+.sl-markdown-content table:has(td img[width]) td:first-child {
+    padding: 0;
+}
+
+.sl-markdown-content table:has(td img[width]) td:nth-child(2) {
+    padding-top: 0.75rem;
+    font-weight: 700;
+    font-size: var(--sl-text-lg);
+}
+
+.sl-markdown-content table:has(td img[width]) td:last-child {
+    padding-bottom: 1rem;
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-sm);
+}
+
+/* The theme name stretches over the whole card. */
+.sl-markdown-content table:has(td img[width]) td:nth-child(2) a {
+    color: var(--sl-color-white);
+    text-decoration: none;
+}
+
+.sl-markdown-content table:has(td img[width]) td:nth-child(2) a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+/* The top of the homepage only. */
 .sl-markdown-content td img[width] {
-    aspect-ratio: 4 / 5;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
     object-fit: cover;
     object-position: top;
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 0.5rem;
+    border-bottom: 1px solid var(--sl-color-gray-5);
 }
