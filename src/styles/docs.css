@@ -145,3 +145,24 @@
     object-position: top;
     border-bottom: 1px solid var(--sl-color-gray-5);
 }
+
+/* Caption of the image lightbox (src/scripts/image-gallery.ts). */
+.pswp__caption {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: calc(100% - 2rem);
+    margin-bottom: 1rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    background: rgb(0 0 0 / 0.65);
+    color: #fff;
+    font-size: 0.875rem;
+    text-align: center;
+    pointer-events: none;
+}
+
+.pswp__caption:empty {
+    display: none;
+}

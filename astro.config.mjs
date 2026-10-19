@@ -31,6 +31,7 @@ export default defineConfig({
       title: 'Sylius Starter',
       description: 'Castor packages to build, configure and operate a Sylius application.',
       customCss: ['./src/styles/docs.css'],
+      components: { MarkdownContent: './src/components/MarkdownContent.astro' },
       head: [
         { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' } },
         { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true } },
