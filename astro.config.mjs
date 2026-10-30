@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
@@ -6,6 +7,7 @@ import starlightLinksValidator from 'starlight-links-validator';
 import starlightLlmsTxt from 'starlight-llms-txt';
 import monorepoDocs from './src/integrations/monorepo-docs.mjs';
 import rehypeDocsLinks from './src/integrations/rehype-docs-links.mjs';
+import { themesSidebar } from './src/integrations/themes-sidebar.mjs';
 
 // GitHub Pages project site of sylius-starter/docs: https://sylius-starter.github.io/docs/
 const site = process.env.SITE_URL ?? 'https://sylius-starter.github.io';
@@ -48,11 +50,11 @@ export default defineConfig({
         { label: 'Introduction', slug: 'index' },
         { label: 'Getting started', items: [{ autogenerate: { directory: 'getting-started' } }] },
         { label: 'Commands', items: [{ autogenerate: { directory: 'commands' } }] },
-        { label: 'Themes', collapsed: true, items: [{ autogenerate: { directory: 'themes' } }] },
+        { label: 'Themes', items: themesSidebar(resolve(fileURLToPath(new URL('.', import.meta.url)), docsDir)) },
         { label: 'E-commerce import', items: [{ autogenerate: { directory: 'import' } }] },
         { label: 'Extending', items: [{ autogenerate: { directory: 'extending' } }] },
         { label: 'Storefront slots', items: [{ autogenerate: { directory: 'storefront' } }] },
-        { label: 'Contributing', collapsed: true, items: [{ autogenerate: { directory: 'contributing' } }] },
+        { label: 'Contributing', items: [{ autogenerate: { directory: 'contributing' } }] },
         { label: 'Sylius Starter website', link: 'https://sylius-starter.github.io/', attrs: { target: '_blank' } },
       ],
       plugins: [starlightLinksValidator(), starlightLlmsTxt()],
