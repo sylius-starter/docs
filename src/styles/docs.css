@@ -2,6 +2,8 @@
 
 :root {
     --sl-font: 'Inter', system-ui, sans-serif;
+    /* Wider than Starlight's 45rem, for the screenshot tables and so the page outline sits at the right edge. */
+    --sl-content-width: 64rem;
 
     /* Dark theme (Starlight default): cyan accents. */
     --sl-color-accent-low: #0a3a3e;
